@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 商品(包含类目)
+ * 商品(包含类目)-----第二层
  * @author yangbo
  * 2018-06-18 23:17
  */
@@ -23,7 +23,7 @@ public class ProductVO {
     private String categoryName;
 
     @JsonProperty("type")
-    /**类目编号.*/
+    /** 类目编号.*/
     private Integer categoryType;
 
     @JsonProperty("foods")

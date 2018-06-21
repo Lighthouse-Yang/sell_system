@@ -6,7 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 商品详情
+ * 商品详情-----第三层
  * @author yangbo
  * 2018-06-18 23:28
  */
