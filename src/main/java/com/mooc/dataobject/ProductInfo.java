@@ -49,6 +49,4 @@ public class ProductInfo {
     /**更新时间.*/
     private Date updateTime;
 
-    /**类目编号.*/
-   // private Integer categoryId;
 }

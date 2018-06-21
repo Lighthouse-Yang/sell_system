@@ -25,10 +25,10 @@ public class OrderDetail {
     /**商品id.*/
     private String productId;
 
-    /**商品价格.*/
+    /**商品名称.*/
     private String productName;
 
-    /**商品价格.*/
+    /**商品单价.*/
     private BigDecimal productPrice;
 
     /**商品数量.*/
