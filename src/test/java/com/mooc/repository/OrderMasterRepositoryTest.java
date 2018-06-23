@@ -12,18 +12,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
-
 /**
  * @author yangbo
  * 2018-06-21 23:34
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderMaterRepositoryTest {
+public class OrderMasterRepositoryTest {
 
     @Autowired
-    private OrderMaterRepository repository;
+    private OrderMasterRepository repository;
 
     private final String OPENID = "WODEWEIXIN";
 

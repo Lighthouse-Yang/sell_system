@@ -4,20 +4,19 @@ import lombok.Getter;
 
 /**
  * @author yangbo
- * 2018-06-21 23:21
+ * 2018-06-23 21:15
  */
 @Getter
-public enum PayStatusEnum implements CodeEnum {
+public enum ResultEnum {
 
-    WAIT(0,"等待支付"),
-    SUCCESS(1,"支付成功"),
+    PRODUCT_NOT_EXIST(10,"商品不存在"),
     ;
 
     private Integer code;
 
     private String message;
 
-    PayStatusEnum(Integer code, String message) {
+    ResultEnum(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
