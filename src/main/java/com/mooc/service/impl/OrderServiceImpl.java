@@ -7,9 +7,12 @@ import com.mooc.dto.OrderDTO;
 import com.mooc.enums.ResultEnum;
 import com.mooc.exception.SellException;
 import com.mooc.repository.OrderDetailRepository;
+import com.mooc.repository.SellerInfoRepository;
 import com.mooc.service.OrderService;
 import com.mooc.service.ProductService;
+import com.mooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,6 +42,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
 
+        //生成订单id.
+        String orderId = KeyUtil.genUniqueKey();
+
         //定义总价
         BigDecimal orderAmount = new BigDecimal(BigInteger.ZERO);
 
@@ -55,10 +61,15 @@ public class OrderServiceImpl implements OrderService {
 
 
             //3. 订单详情入库
-
-
-
-
+            /**
+             * 订单入库给订单一个随机的订单号.
+             * 前端只传入商品单价、商品数量
+             * */
+            orderDetail.setDetailId(KeyUtil.genUniqueKey());
+            orderDetail.setOrderId(orderId);
+            //将productInfo内容copy到orderDetail.
+            BeanUtils.copyProperties(productInfo,orderDetail);
+            orderDetailRepository.save(orderDetail);
         }
 
 

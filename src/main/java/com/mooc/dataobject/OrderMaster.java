@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
+/**订单买家情况表
  * @author yangbo
  * 2018-06-13 15:29
  */
