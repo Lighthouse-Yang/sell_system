@@ -18,6 +18,4 @@ public class Date2LongSerializer extends JsonSerializer<Date>{
     public void serialize(Date date, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
         jsonGenerator.writeNumber(date.getTime() / 1000);
     }
-
-
     }

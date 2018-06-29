@@ -40,6 +40,9 @@ public class OrderServiceImpl implements OrderService {
     private ProductService productService;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private OrderDetailRepository orderDetailRepository;
 
     @Autowired
@@ -105,6 +108,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDTO findOne(String orderId) {
+
+        OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
+        if (orderMaster == null ) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+
+
+        }
+
+
         return null;
     }
 
