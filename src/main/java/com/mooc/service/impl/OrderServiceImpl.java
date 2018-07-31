@@ -15,11 +15,13 @@ import com.mooc.service.OrderService;
 import com.mooc.service.ProductService;
 import com.mooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
@@ -97,12 +99,10 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream().map(e -> new CartDTO(e.getProductId(),e.getProductQuantity())).collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
 
-        return orderDTO;
 
         //发送webSocket消息
-        //webSocket.sendMessage(orderDTO.getOrderId());
-
-
+        webSocket.sendMessage(orderDTO.getOrderId());
+        return orderDTO;
 
     }
 
@@ -110,14 +110,17 @@ public class OrderServiceImpl implements OrderService {
     public OrderDTO findOne(String orderId) {
 
         OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
-        if (orderMaster == null ) {
+        if (orderMaster == null) {
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
-
-
         }
-
-
-        return null;
+        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId(orderId);
+        if (CollectionUtils.isEmpty(orderDetailList)) {
+            throw new SellException(ResultEnum.ORDER_NOT_EXIST);
+        }
+            OrderDTO orderDTO = new OrderDTO();
+            BeanUtils.copyProperties(orderMaster,orderDTO);
+            orderDTO.setOrderDetailList(orderDetailList);
+            return orderDTO;
     }
 
     @Override

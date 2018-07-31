@@ -2,7 +2,6 @@ package com.mooc.dataobject;
 
 import com.mooc.enums.OrderStatusEnum;
 import com.mooc.enums.PayStatusEnum;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
