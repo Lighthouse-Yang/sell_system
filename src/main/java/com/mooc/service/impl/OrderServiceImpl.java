@@ -101,9 +101,9 @@ public class OrderServiceImpl implements OrderService {
 
 
         //发送webSocket消息
-        webSocket.sendMessage(orderDTO.getOrderId());
-        return orderDTO;
-
+        //gitwebSocket.sendMessage(orderDTO.getOrderId());
+        //return orderDTO;
+                //也不知道为啥有点问题
     }
 
     @Override
